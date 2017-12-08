@@ -77,13 +77,15 @@ header {
           &.active {
             color: $mainColor;
           }
-          .new {
-            position: absolute;
-            top: 20px;
-            right: -8px;
-            color: #ff5b54;
-            font-size: 9px;
-          }
+          &.stayAPP {
+            span {
+              position: absolute;
+              top: 20px;
+              right: -8px;
+              color: #ff5b54;
+              font-size: 9px;
+            }
+          } 
         }
         .nav-appDown {
           width: 230px;

@@ -2,6 +2,17 @@
  * Created by Steven on 2017/4/30.
  */
 $(function () {
+    /*APP的显示与隐藏*/ 
+    $(".stayAPP").hover(function(){
+        $(this).next().show();
+    },function(){
+        $(this).next().hide();
+    }) 
+    $(".nav-appDown").hover(function(){
+        $(this).show();
+    },function(){
+        $(this).hide();
+    }) 
     /*轮播图部分*/
     $.each($("#main-banner>ul>li"), function (i) {
         // 遍历li，为每个li添加背景图片并动态设置li的宽度
