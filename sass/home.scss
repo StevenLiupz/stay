@@ -65,16 +65,15 @@ header {
       margin-left: 165px;
       li {
         float: left;
-        font: normal 13px "微软雅黑";
-        cursor: pointer;
-        position: relative;
+        font: normal 13px "微软雅黑"; 
+        position: relative; 
         > a {
           display: block;
           padding: 25px 21px 10px;
           color: #FFF;
           text-shadow: 2px 2px 2px #010101; 
-          position: relative;
-          &.active {
+          position: relative;  
+          &:hover,&.active {
             color: $mainColor;
           }
           &.stayAPP {
@@ -91,10 +90,11 @@ header {
           width: 230px;
           padding: 20px;
           background-color: rgba(0,0,0,0.8);
-          border-radius: 15px;
+          border-radius: 15px; 
           position: absolute;
           top: 72px;
           left: -80px;
+          z-index: 10;
           &::before {
             content: '';
             width: 0;
@@ -106,7 +106,7 @@ header {
             position: absolute;
             top: -40px;
             left: 115px;
-          }
+          } 
           .nav-appText {
             padding-bottom: 20px;
             border-bottom: 1px solid #5b5b5b;
@@ -141,6 +141,7 @@ header {
               p {
                 color: #fff;
                 line-height: 20px;
+                margin-top: 4px;
               }
             }
           }
@@ -184,6 +185,12 @@ header {
         font-size: 13px;
         display: inline-block;
         margin: 0px 12px;
+        &:hover {
+          color: $mainColor;
+          &.experience {
+            background: #00b9d0;
+          }
+        }
         &.logining {
           position: relative;
           &::after {

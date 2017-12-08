@@ -90,7 +90,6 @@ header {
       header .nav ul li {
         float: left;
         font: normal 13px "微软雅黑";
-        cursor: pointer;
         position: relative; }
         header .nav ul li > a {
           display: block;
@@ -98,7 +97,7 @@ header {
           color: #FFF;
           text-shadow: 2px 2px 2px #010101;
           position: relative; }
-          header .nav ul li > a.active {
+          header .nav ul li > a:hover, header .nav ul li > a.active {
             color: #50c8d7; }
           header .nav ul li > a.stayAPP span {
             position: absolute;
@@ -113,7 +112,8 @@ header {
           border-radius: 15px;
           position: absolute;
           top: 72px;
-          left: -80px; }
+          left: -80px;
+          z-index: 10; }
           header .nav ul li .nav-appDown::before {
             content: '';
             width: 0;
@@ -152,7 +152,8 @@ header {
                 width: 88px; }
               header .nav ul li .nav-appDown .nav-appPic .qrcode p {
                 color: #fff;
-                line-height: 20px; }
+                line-height: 20px;
+                margin-top: 4px; }
   header .login {
     position: absolute;
     top: 14px;
@@ -183,6 +184,10 @@ header {
       font-size: 13px;
       display: inline-block;
       margin: 0px 12px; }
+      header .login .login-link a:hover {
+        color: #50c8d7; }
+        header .login .login-link a:hover.experience {
+          background: #00b9d0; }
       header .login .login-link a.logining {
         position: relative; }
         header .login .login-link a.logining::after {

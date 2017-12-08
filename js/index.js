@@ -2,17 +2,13 @@
  * Created by Steven on 2017/4/30.
  */
 $(function () {
-    /*APP的显示与隐藏*/ 
-    $(".stayAPP").hover(function(){
-        $(this).next().show();
+    /*APP的显示与隐藏*/   
+    $(".stayAPP").parent('li').hover(function(){  
+        $(this).children('.nav-appDown').show(); 
     },function(){
-        $(this).next().hide();
-    }) 
-    $(".nav-appDown").hover(function(){
-        $(this).show();
-    },function(){
-        $(this).hide();
-    }) 
+        // 这里利用时间冒泡的原理，虽然绝对定位的div脱离了标准流，但是依然会触发li的hover事件   
+        $(this).children('.nav-appDown').hide(); 
+    })
     /*轮播图部分*/
     $.each($("#main-banner>ul>li"), function (i) {
         // 遍历li，为每个li添加背景图片并动态设置li的宽度
