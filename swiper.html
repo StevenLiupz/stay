@@ -59,6 +59,11 @@
 			text-align: center;
 			position: absolute;
 			bottom: 10px;
+			cursor: default;
+			-webkit-user-select: none; 
+		    -moz-user-select: none; 
+		    -ms-user-select: none; 
+		    user-select: none;
 		}
 		.swiper-index .swiper-index-item {
 			display: inline-block;
@@ -68,6 +73,7 @@
 			background: #000;
 			opacity: 0.3;
 			margin: 0 5px;
+			cursor: pointer; 
 		}
 		.swiper-index .swiper-index-item.active {
 			background: #007aff;
@@ -117,12 +123,12 @@
 				<li><a href="javascript:;"><img src="./images/banner1.jpg" ></a></li>
 			</ul>  
 			<div class="swiper-index">
-				<span class="swiper-index-item"></span>
-				<span class="swiper-index-item"></span>
-				<span class="swiper-index-item"></span>
-				<span class="swiper-index-item"></span>
-				<span class="swiper-index-item"></span>
-				<span class="swiper-index-item"></span>
+				<div class="swiper-index-item"></div>
+				<div class="swiper-index-item"></div>
+				<div class="swiper-index-item"></div>
+				<div class="swiper-index-item"></div>
+				<div class="swiper-index-item"></div>
+				<div class="swiper-index-item"></div>
 			</div>
 			<div class="swiper-button">
 				<div class="swiper-button-prev"></div>
@@ -144,8 +150,8 @@
 
 			setHeight(); // 初始化轮播图区域的高度
 			autoplay(); // 轮播图自动播放
+			swiperIndexSet(); // 初始化轮播图的第一个下标样式 
 
-			swiperIndex(); // 初始化轮播图的第一个下标样式
 			$(".swiper-wrapper>ul").css("left",-imgWidth); // 初始化移动轮播图至第一张图
 			$(window).resize(function() { 
 				setHeight(); // 根据窗口大小的变化动态设置轮播图区域的高度和图片宽度
@@ -193,20 +199,28 @@
 						if (index == 0) {
 							index = 6;
 							$swiper.css("left",-imgWidth*index); 
-							swiperIndex();
+							swiperIndexSet();
 						}else if (index == 7) {
 							index = 1;
 							$swiper.css("left",-imgWidth*index); 
-							swiperIndex();
+							swiperIndexSet();
 						}
 					})
 				}
 			}
 
 			// 设置轮播图的下标样式
-			function swiperIndex(){
+			function swiperIndexSet(){
 				$(".swiper-index .swiper-index-item").removeClass("active").eq(index-1).addClass("active");
 			}
+			// 轮播图下标的点击跳转
+			// $(".swiper-index .swiper-index-item").each(function(i){   
+			// 	// 如何将i传入click函数中？
+			// 	$(this).on("click",function(){
+			// 		index = i + 1;
+			// 		$swiper.css("left",-imgWidth*index);
+			// 	}); 
+			// }) 
 
 			function autoplay(speed){
 				clearInterval(timer); 
