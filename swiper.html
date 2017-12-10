@@ -54,6 +54,25 @@
 			display: block;
 			width: 100%;
 		}  
+		.swiper-index {
+			width: 100%;
+			text-align: center;
+			position: absolute;
+			bottom: 10px;
+		}
+		.swiper-index .swiper-index-item {
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #000;
+			opacity: 0.3;
+			margin: 0 5px;
+		}
+		.swiper-index .swiper-index-item.active {
+			background: #007aff;
+			opacity: 1;
+		}
 		.swiper-button {
 			display: none;
 		}
@@ -63,6 +82,7 @@
 			background: url("images/arrows.png") no-repeat;
 			cursor: pointer;
 			position: absolute;
+			margin: 0 5px;
 			top: 50%;
 			transform: translateY(-50%);
 			z-index: 10;
@@ -96,6 +116,14 @@
 				<li><a href="javascript:;"><img src="./images/banner6.jpg" ></a></li>
 				<li><a href="javascript:;"><img src="./images/banner1.jpg" ></a></li>
 			</ul>  
+			<div class="swiper-index">
+				<span class="swiper-index-item"></span>
+				<span class="swiper-index-item"></span>
+				<span class="swiper-index-item"></span>
+				<span class="swiper-index-item"></span>
+				<span class="swiper-index-item"></span>
+				<span class="swiper-index-item"></span>
+			</div>
 			<div class="swiper-button">
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
@@ -117,6 +145,7 @@
 			setHeight(); // 初始化轮播图区域的高度
 			autoplay(); // 轮播图自动播放
 
+			swiperIndex(); // 初始化轮播图的第一个下标样式
 			$(".swiper-wrapper>ul").css("left",-imgWidth); // 初始化移动轮播图至第一张图
 			$(window).resize(function() { 
 				setHeight(); // 根据窗口大小的变化动态设置轮播图区域的高度和图片宽度
@@ -156,6 +185,7 @@
 					}else if(typeof direction == "undefined" || direction == true){
 						index++;
 					}
+					$(".swiper-index .swiper-index-item").removeClass("active").eq(index-1).addClass("active");
 					$swiper.animate({
 						left: -imgWidth * index
 					},500,function(){
@@ -163,13 +193,21 @@
 						if (index == 0) {
 							index = 6;
 							$swiper.css("left",-imgWidth*index); 
+							swiperIndex();
 						}else if (index == 7) {
 							index = 1;
 							$swiper.css("left",-imgWidth*index); 
+							swiperIndex();
 						}
 					})
 				}
 			}
+
+			// 设置轮播图的下标样式
+			function swiperIndex(){
+				$(".swiper-index .swiper-index-item").removeClass("active").eq(index-1).addClass("active");
+			}
+
 			function autoplay(speed){
 				clearInterval(timer); 
 				if(speed == "undefined" || isNaN(speed)){
