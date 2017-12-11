@@ -214,13 +214,22 @@
 				$(".swiper-index .swiper-index-item").removeClass("active").eq(index-1).addClass("active");
 			}
 			// 轮播图下标的点击跳转
-			// $(".swiper-index .swiper-index-item").each(function(i){   
-			// 	// 如何将i传入click函数中？
-			// 	$(this).on("click",function(){
-			// 		index = i + 1;
-			// 		$swiper.css("left",-imgWidth*index);
-			// 	}); 
-			// }) 
+			$(".swiper-index .swiper-index-item").each(function(i){   
+				// 如何将i传入click函数中？
+				// 这里要用立即执行函数进行传参的话需要在外部定义一个变量存this对象，否则在立即执行函数内部的this会指向window
+				// let $that = $(this); 
+				// (function(i){
+				// 	$that.on("click",function(){
+				// 		index = i + 1; 
+				// 		$swiper.css("left",-imgWidth*index);
+				// 	}); 
+				// })(i);
+				$(this).on("click",function(){
+					index = $(this).index() + 1; 
+					$swiper.css("left",-imgWidth*index);
+					swiperIndexSet();
+				})
+			}) 
 
 			function autoplay(speed){
 				clearInterval(timer); 
