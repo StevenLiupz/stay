@@ -307,39 +307,44 @@ footer .link .officially p img {
 }
 
 /*footer部分结束*/
-.main .main-banner {
+.swiper-container {
   width: 100%;
-  height: 650px;
   overflow: hidden;
   position: relative;
 }
-.main .main-banner ul {
-  width: 700%;
-  height: 650px;
+.swiper-container .swiper-wrapper, .swiper-container .swiper-wrapper ul {
+  height: 100%;
+}
+.swiper-container .swiper-wrapper ul {
+  width: 800%;
   position: absolute;
-  top: 0;
-  left: 0;
 }
-.main .main-banner ul li {
-  height: 650px;
+.swiper-container .swiper-wrapper ul li {
+  width: calc(100% / 8);
+  height: 100%;
   float: left;
+  position: relative;
 }
-.main .main-banner ul li > .content {
-  width: 1200px;
+.swiper-container .swiper-wrapper ul li a, .swiper-container .swiper-wrapper ul li a img {
+  display: block;
+  width: 100%;
+}
+.swiper-container .swiper-wrapper ul li .content {
+  width: 100%;
   color: #fff;
   text-align: center;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
-.main .main-banner ul li > .content h1 {
+.swiper-container .swiper-wrapper ul li .content h1 {
   font-size: 36px;
-  margin-top: 211px;
 }
-.main .main-banner ul li > .content p {
+.swiper-container .swiper-wrapper ul li .content p {
   font-size: 15px;
   line-height: 30px;
-  margin-top: 26px;
 }
-.main .main-banner ul li > .content a {
+.swiper-container .swiper-wrapper ul li .content a {
   display: block;
   width: 256px;
   height: 46px;
@@ -347,149 +352,179 @@ footer .link .officially p img {
   font-size: 16px;
   line-height: 46px;
   text-align: center;
-  margin: 38px auto 0;
   overflow: hidden;
   position: relative;
+  margin: 0 auto;
 }
-.main .main-banner ul li > .content a:hover {
+.swiper-container .swiper-wrapper ul li .content a:hover {
   background: rgba(0, 0, 0, 0.2);
 }
-.main .main-banner ul li > .content a span {
+.swiper-container .swiper-wrapper ul li .content a span {
   position: absolute;
-  background-color: #50c8d7;
+  background: #50c8d7;
 }
-.main .main-banner ul li > .content a span.lineTop, .main .main-banner ul li > .content a span.lineBottom {
-  left: 0;
+.swiper-container .swiper-wrapper ul li .content a span span.lineTop, .swiper-container .swiper-wrapper ul li .content a span span.lineBottom {
   width: 100%;
   height: 2px;
+  left: 0;
 }
-.main .main-banner ul li > .content a span.lineLeft, .main .main-banner ul li > .content a span.lineRight {
-  top: 0;
+.swiper-container .swiper-wrapper ul li .content a span span.lineLeft, .swiper-container .swiper-wrapper ul li .content a span span.lineRight {
   width: 2px;
   height: 100%;
+  top: 0;
 }
-.main .main-banner ul li > .content a span.lineTop {
+.swiper-container .swiper-wrapper ul li .content a span.lineTop {
   top: 0;
   transform: translateX(-100%);
 }
-.main .main-banner ul li > .content a span.lineBottom {
+.swiper-container .swiper-wrapper ul li .content a span.lineBottom {
   bottom: 0;
   transform: translateX(100%);
 }
-.main .main-banner ul li > .content a span.lineLeft {
+.swiper-container .swiper-wrapper ul li .content a span.lineLeft {
   left: 0;
   transform: translateY(100%);
 }
-.main .main-banner ul li > .content a span.lineRight {
+.swiper-container .swiper-wrapper ul li .content a span.lineRight {
   right: 0;
   transform: translateY(-100%);
 }
-.main .main-banner ul li > .content a.run .lineTop {
+.swiper-container .swiper-wrapper ul li .content a.run .lineTop {
   transform: translateX(0);
   transition: transform 0.2s;
 }
-.main .main-banner ul li > .content a.run .lineRight {
+.swiper-container .swiper-wrapper ul li .content a.run .lineRight {
   transform: translateY(0);
   transition: transform 0.1s 0.2s;
 }
-.main .main-banner ul li > .content a.run .lineBottom {
+.swiper-container .swiper-wrapper ul li .content a.run .lineBottom {
   transform: translateX(0);
   transition: transform 0.2s 0.3s;
 }
-.main .main-banner ul li > .content a.run .lineLeft {
+.swiper-container .swiper-wrapper ul li .content a.run .lineLeft {
   transform: translateY(0);
   transition: transform 0.1s 0.5s;
 }
-.main .main-banner .btn-arrow {
-  display: none;
-  z-index: 10;
+.swiper-container .swiper-wrapper .swiper-index {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-.main .main-banner .btn-arrow span {
-  display: block;
+.swiper-container .swiper-wrapper .swiper-index .swiper-index-item {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+  opacity: 0.3;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.swiper-container .swiper-wrapper .swiper-index .swiper-index-item.active {
+  background: #007aff;
+  opacity: 1;
+}
+.swiper-container .swiper-wrapper .swiper-button {
+  display: none;
+}
+.swiper-container .swiper-wrapper .swiper-button .swiper-button-prev, .swiper-container .swiper-wrapper .swiper-button .swiper-button-next {
   width: 25px;
   height: 73px;
+  background: url("../images/arrows.png") no-repeat;
   cursor: pointer;
-  background: url("../images/arrows5.png") no-repeat;
   position: absolute;
-  top: 266px;
+  margin: 0 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
-.main .main-banner .btn-arrow span.prev {
+.swiper-container .swiper-wrapper .swiper-button .swiper-button-prev {
   background-position: 0 -73px;
-  left: 160px;
+  left: 10%;
 }
-.main .main-banner .btn-arrow span.prev:hover {
-  background-position: 0px 0px;
+.swiper-container .swiper-wrapper .swiper-button .swiper-button-prev:hover {
+  background-position: 0 0;
 }
-.main .main-banner .btn-arrow span.next {
+.swiper-container .swiper-wrapper .swiper-button .swiper-button-next {
   background-position: -25px -73px;
-  right: 160px;
+  right: 10%;
 }
-.main .main-banner .btn-arrow span.next:hover {
-  background-position: -25px 0px;
+.swiper-container .swiper-wrapper .swiper-button .swiper-button-next:hover {
+  background-position: -25px 0;
 }
-.main .ad .ad-left, .main .ad .ad-right {
+
+.ad .ad-left, .ad .ad-right {
   width: 560px;
   height: 160px;
   background: #f4f4f4;
   position: relative;
 }
-.main .ad .ad-left .img, .main .ad .ad-right .img {
+
+.ad .ad-left .img, .ad .ad-right .img {
   transition: transform 0.6s ease-in-out;
   position: absolute;
   top: 50px;
   left: 60px;
 }
-.main .ad .ad-left .img:hover, .main .ad .ad-right .img:hover {
+.ad .ad-left .img:hover, .ad .ad-right .img:hover {
   -webkit-transform: rotate(360deg) scale(1.2);
   -moz-transform: rotate(360deg) scale(1.2);
   -ms-transform: rotate(360deg) scale(1.2);
   -o-transform: rotate(360deg) scale(1.2);
   transform: rotate(360deg) scale(1.2);
 }
-.main .ad .ad-left .text, .main .ad .ad-right .text {
+
+.ad .ad-left .text, .ad .ad-right .text {
   float: right;
   width: 380px;
   height: 130px;
   padding-top: 30px;
 }
-.main .ad .ad-left .text p, .main .ad .ad-right .text p {
+.ad .ad-left .text p, .ad .ad-right .text p {
   padding-top: 16px;
   color: #a0a0a0;
 }
-.main .ad .ad-left .text h3, .main .ad .ad-right .text h3 {
+.ad .ad-left .text h3, .ad .ad-right .text h3 {
   font-size: 20px;
   font-weight: 500;
   color: #2f2f2f;
 }
-.main .ad .ad-left .text h3 span, .main .ad .ad-right .text h3 span {
+.ad .ad-left .text h3 span, .ad .ad-right .text h3 span {
   display: inline-block;
   animation-name: topDown;
   animation-duration: .3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-.main .ad .ad-left .text h3 span:nth-child(2), .main .ad .ad-right .text h3 span:nth-child(2) {
+.ad .ad-left .text h3 span:nth-child(2), .ad .ad-right .text h3 span:nth-child(2) {
   animation-delay: .3s;
 }
-.main .ad .ad-left .text h3 span:nth-child(3), .main .ad .ad-right .text h3 span:nth-child(3) {
+.ad .ad-left .text h3 span:nth-child(3), .ad .ad-right .text h3 span:nth-child(3) {
   animation-delay: .6s;
 }
-.main .ad .ad-left .text h3 span:nth-child(4), .main .ad .ad-right .text h3 span:nth-child(4) {
+.ad .ad-left .text h3 span:nth-child(4), .ad .ad-right .text h3 span:nth-child(4) {
   animation-delay: .9s;
 }
-.main .ad {
+
+.ad {
   margin: 50px auto;
 }
-.main .ad .ad-left {
+.ad .ad-left {
   float: left;
 }
-.main .ad .ad-left .text a {
+.ad .ad-left .text a {
   color: #84c6ca;
 }
-.main .ad .ad-right {
+.ad .ad-right {
   float: right;
 }
-.main .ad .ad-right .img .clock {
+.ad .ad-right .img .clock {
   position: absolute;
   top: 25px;
   left: 27px;

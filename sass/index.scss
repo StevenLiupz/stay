@@ -1,35 +1,39 @@
 @charset "UTF-8";
 @import './home.scss';
 
-.main{
-  //轮播图部分
-  .main-banner {
-    width: 100%;
-    height: 650px;
-    overflow: hidden;
-    position: relative;
+//轮播图部分
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  .swiper-wrapper { 
+    height: 100%;
     ul {
-      width: 700%;
-      height: 650px;
+      @extend .swiper-wrapper;
+      width: 800%;
       position: absolute;
-      top: 0;
-      left: 0;
       li {
-        height: 650px;
+        width: calc(100% / 8)  ;
+        height: 100%;
         float: left;
-        > .content {
-          width: 1200px;
+        position: relative;
+        a,a img {
+          display: block;
+          width: 100%;
+        }
+        .content {
+          width: 100%;
           color: #fff;
           text-align: center;
-          margin: 0 auto;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
           h1 {
             font-size: 36px;
-            margin-top: 211px;
           }
           p {
             font-size: 15px;
             line-height: 30px;
-            margin-top: 26px;
           }
           a {
             display: block;
@@ -39,41 +43,44 @@
             font-size: 16px;
             line-height: 46px;
             text-align: center;
-            margin: 38px auto 0;
-            //border: 2px solid $mainColor;
             overflow: hidden;
             position: relative;
-            &:hover{
+            margin: 0 auto;
+            &:hover {
               background: rgba(0,0,0,.2);
             }
             span {
               position: absolute;
-              background-color: $mainColor;
-              &.lineTop,&.lineBottom {
-                left: 0;
+              background: $mainColor;
+              %lineY {
                 width: 100%;
                 height: 2px;
+                left: 0;
               }
-              &.lineLeft,&.lineRight {
-                top: 0;
+              %lineX {
                 width: 2px;
                 height: 100%;
+                top: 0;
               }
               &.lineTop {
                 top: 0;
                 transform: translateX(-100%);
+                @extend %lineY;
               }
               &.lineBottom {
                 bottom: 0;
                 transform: translateX(100%);
+                @extend %lineY;
               }
               &.lineLeft {
                 left: 0;
                 transform: translateY(100%);
+                @extend %lineX;
               }
               &.lineRight {
                 right: 0;
                 transform: translateY(-100%);
+                @extend %lineX;
               }
             }
             &.run{
@@ -97,116 +104,144 @@
           }
         }
       }
+    } 
+    .swiper-index {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: 10px;
+      cursor: default;
+      -webkit-user-select: none; 
+      -moz-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none;
+      .swiper-index-item {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #000;
+        opacity: 0.3;
+        margin: 0 5px;
+        cursor: pointer; 
+        &.active {
+          background: #007aff;
+          opacity: 1;
+        }
+      }
     }
-    .btn-arrow {
+    .swiper-button {
       display: none;
-      z-index: 10;
-      span {
-        display: block;
+      %swiper-button-css {
         width: 25px;
         height: 73px;
+        background: url("../images/arrows.png") no-repeat;
         cursor: pointer;
-        background: url("../images/arrows5.png") no-repeat;
         position: absolute;
-        top: 266px;
-        &.prev {
-          background-position: 0 -73px;
-          left: 160px;
-          &:hover {
-            background-position: 0px 0px;
-          }
+        margin: 0 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+      }
+      .swiper-button-prev {
+        @extend %swiper-button-css;
+        background-position: 0 -73px;
+        left: 10%;
+        &:hover {
+          background-position: 0 0;
         }
-        &.next {
-          background-position: -25px -73px;
-          right: 160px;
-          &:hover {
-            background-position: -25px 0px;
-          }
+      }
+      .swiper-button-next {
+        @extend %swiper-button-css;
+        background-position: -25px -73px; 
+        right: 10%;
+        &:hover {
+          background-position: -25px 0;
         }
       }
     }
+  } 
+} 
+//轮播图下方广告部分
+%ad_public {
+  width: 560px;
+  height: 160px;
+  background: #f4f4f4;
+  position: relative;
+}
+%ad_img {
+  transition: transform 0.6s ease-in-out;
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  &:hover {
+    -webkit-transform: rotate(360deg) scale(1.2);
+    -moz-transform: rotate(360deg) scale(1.2);
+    -ms-transform: rotate(360deg) scale(1.2);
+    -o-transform: rotate(360deg) scale(1.2);
+    transform: rotate(360deg) scale(1.2);
   }
-  //轮播图下方广告部分
-  %ad_public {
-    width: 560px;
-    height: 160px;
-    background: #f4f4f4;
-    position: relative;
+}
+%ad_text {
+  float: right;
+  width: 380px;
+  height: 130px;
+  padding-top: 30px;
+  p {
+    padding-top: 16px;
+    color: #a0a0a0;
   }
-  %ad_img {
-    transition: transform 0.6s ease-in-out;
-    position: absolute;
-    top: 50px;
-    left: 60px;
-    &:hover {
-      -webkit-transform: rotate(360deg) scale(1.2);
-      -moz-transform: rotate(360deg) scale(1.2);
-      -ms-transform: rotate(360deg) scale(1.2);
-      -o-transform: rotate(360deg) scale(1.2);
-      transform: rotate(360deg) scale(1.2);
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2f2f2f;
+    span {
+      display: inline-block;
+      animation-name: topDown; // 动画名
+      animation-duration: .3s; // 动画播放时间
+      animation-iteration-count: infinite; // 动画播放次数
+      animation-direction: alternate; // 动画播放方向
+      &:nth-child(2){
+        animation-delay: .3s;
+      }
+      &:nth-child(3){
+        animation-delay: .6s;
+      }
+      &:nth-child(4){
+        animation-delay: .9s;
+      }
     }
   }
-  %ad_text {
+}
+.ad {
+  margin: 50px auto;
+  .ad-left {
+    float: left;
+    @extend %ad_public;
+    .img {
+      @extend %ad_img;
+    }
+    .text {
+      @extend %ad_text;
+      a {
+        color: #84c6ca;
+      }
+    }
+  }
+  .ad-right {
     float: right;
-    width: 380px;
-    height: 130px;
-    padding-top: 30px;
-    p {
-      padding-top: 16px;
-      color: #a0a0a0;
-    }
-    h3 {
-      font-size: 20px;
-      font-weight: 500;
-      color: #2f2f2f;
-      span {
-        display: inline-block;
-        animation-name: topDown; // 动画名
-        animation-duration: .3s; // 动画播放时间
-        animation-iteration-count: infinite; // 动画播放次数
-        animation-direction: alternate; // 动画播放方向
-        &:nth-child(2){
-          animation-delay: .3s;
-        }
-        &:nth-child(3){
-          animation-delay: .6s;
-        }
-        &:nth-child(4){
-          animation-delay: .9s;
-        }
+    @extend %ad_public;
+    .img {
+      @extend %ad_img;
+      .clock {
+        position: absolute;
+        top: 25px;
+        left: 27px;
+        animation: rotate 2s linear infinite;
       }
     }
-  }
-  .ad {
-    margin: 50px auto;
-    .ad-left {
-      float: left;
-      @extend %ad_public;
-      .img {
-        @extend %ad_img;
-      }
-      .text {
-        @extend %ad_text;
-        a {
-          color: #84c6ca;
-        }
-      }
-    }
-    .ad-right {
-      float: right;
-      @extend %ad_public;
-      .img {
-        @extend %ad_img;
-        .clock {
-          position: absolute;
-          top: 25px;
-          left: 27px;
-          animation: rotate 2s linear infinite;
-        }
-      }
-      .text {
-        @extend %ad_text;
-      }
+    .text {
+      @extend %ad_text;
     }
   }
 }
