@@ -1,13 +1,10 @@
 @charset "UTF-8";
-@import './home.scss';
-
-//轮播图部分
+@import './home.scss';   
+  //轮播图部分
 .swiper-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  .swiper-wrapper { 
-    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative; 
     ul {
       @extend .swiper-wrapper;
       width: 800%;
